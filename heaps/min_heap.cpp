@@ -4,32 +4,32 @@ int arr[100000];
 
 
 
-void max_heapify( int arr[],int i,int n){
+void min_heapify( int arr[],int i,int n){
     
     int left=(2*i);
     int right=(2*i)+1;
-    int largest;
-    if(left<=n && arr[left]>arr[i]){
-        largest=left;
+    int smallest;
+    if(left<=n && arr[left]<arr[i]){
+        smallest=left;
     }
     else{
-        largest=i;
+        smallest=i;
     }
     
-    if(largest<=n && arr[right]>arr[largest]){
-        largest=right;
+    if(smallest<=n && arr[right]<arr[smallest]){
+        smallest=right;
     }
     
-    if(largest!=i){
-        swap(arr[i],arr[largest]);
-        max_heapify(arr,largest,n);
+    if(smallest!=i){
+        swap(arr[i],arr[smallest]);
+        min_heapify(arr,smallest,n);
     }
     
 }
 
-void build_maxheap( int arr[],int n){
+void build_minheap( int arr[],int n){
     for(int i=n/2; i>=1; i--){
-        max_heapify(arr,i,n);
+        min_heapify(arr,i,n);
     }
     
 }
@@ -49,8 +49,7 @@ int main()
         
     }
     
-    build_maxheap(arr,n);
-   
+    build_minheap(arr,n);
    
   
     return 0;
